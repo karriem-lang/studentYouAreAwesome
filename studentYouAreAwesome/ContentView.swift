@@ -11,6 +11,10 @@ struct ContentView: View {
     
     @State private var message = ""
     @State private var imageName = ""
+    @State private var messageNumber = -1
+    @State private var lastMessageNumber = -1
+    @State private var imageNumber = -1
+    @State private var lastImageNumber = -1
    
     var body: some View {
         
@@ -35,7 +39,7 @@ struct ContentView: View {
             
             Spacer()
             
-            Button("Press Me!") {
+            Button("Show Message") {
                 let messages = ["You Are Awesome!",
                                 "You Are Great!",
                                 "Fabulous, That's You!",
@@ -43,8 +47,20 @@ struct ContentView: View {
                                 "You Make Me Smile!",
                                 "You Are A Monster Programmer!",
                                 "When The Genius Bar Needs Help, They Call You!"]
-                imageName = "image\(Int.random(in: 0..<10))"
-                message = messages[Int.random(in: 0..<messages.count)]
+                
+                var messageNumber = Int.random(in: 0..<messages.count)
+                while messageNumber == lastMessageNumber {
+                    messageNumber = Int.random(in: 0..<messages.count)
+                }
+                message = messages[messageNumber]
+                lastMessageNumber = messageNumber
+                
+                var imageNumber = Int.random(in: 0..<10)
+                while imageNumber == lastImageNumber {
+                    imageNumber = Int.random(in: 0..<10)
+                }
+                imageName = "image\(imageNumber)"
+                lastImageNumber = imageNumber
             }
             .buttonStyle(.borderedProminent)
             .font(.title2)
