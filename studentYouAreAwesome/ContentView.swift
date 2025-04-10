@@ -12,7 +12,6 @@ struct ContentView: View {
     
     @State private var message = ""
     @State private var imageName = ""
-    @State private var soundName = ""
     @State private var lastSoundNumber = -1
     @State private var lastMessageNumber = -1
     @State private var lastImageNumber = -1
@@ -70,10 +69,9 @@ struct ContentView: View {
                 repeat {
                     soundNumber = Int.random(in: 0..<numberOfSounds)
                 } while soundNumber == lastSoundNumber
-                soundName = "sound\(soundNumber)"
+                let soundName = "sound\(soundNumber)"
                 lastSoundNumber = soundNumber
                 
-//                let soundName = "sound0"
                 guard let soundFile = NSDataAsset(name: soundName) else {
                     print("😡 Could not read file named \(soundName)")
                     return
