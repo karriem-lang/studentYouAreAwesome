@@ -31,6 +31,8 @@ struct ContentView: View {
                 .frame(minHeight: 130)
                 .animation(.easeInOut(duration: 0.15), value: message)
             
+            Spacer()
+            
             Image(imageName)
                 .resizable()
                 .scaledToFit()
